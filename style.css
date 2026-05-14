@@ -18,10 +18,12 @@ body{
     padding:2rem;
     border-radius:1rem;
     width:400px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
 }
 
 h2{
     text-align:center;
+    color:#af4d98;
 }
 
 form{
@@ -30,6 +32,7 @@ form{
 
 .amount p{
     margin-bottom:0.5rem;
+    font-weight:bold;
 }
 
 form input,
@@ -58,6 +61,7 @@ form input{
 .dropdown i{
     font-size:1.5rem;
     margin-top:1rem;
+    color:#af4d98;
 }
 
 .select-container{
@@ -66,8 +70,10 @@ form input{
     justify-content:center;
     border:1px solid lightgray;
     border-radius:0.5rem;
-    width:7rem;
-    padding:0.3rem;
+    width:8rem;
+    padding:0.4rem;
+    gap:0.5rem;
+    background-color:#fafafa;
 }
 
 .select-container img{
@@ -78,12 +84,15 @@ form input{
     width:auto;
     font-size:1rem;
     cursor:pointer;
+    background:none;
 }
 
 .msg{
     margin:2rem 0;
     text-align:center;
     font-size:1.1rem;
+    font-weight:bold;
+    color:#333;
 }
 
 button{
@@ -92,4 +101,9 @@ button{
     color:white;
     font-size:1rem;
     cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background-color:#922f78;
 }

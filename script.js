@@ -15,7 +15,7 @@ const countryList = {
 
     USD: "US",
     INR: "IN",
-    EUR: "EU",
+    EUR: "FR",
     AUD: "AU",
     GBP: "GB",
     CAD: "CA",
@@ -24,15 +24,21 @@ const countryList = {
 
 };
 
+// CHANGE FLAG + UPDATE RATE WHEN DROPDOWN CHANGES
+
 dropdowns.forEach((select) => {
 
     select.addEventListener("change", (evt) => {
 
         updateFlag(evt.target);
 
+        updateExchangeRate();
+
     });
 
 });
+
+// UPDATE FLAG FUNCTION
 
 function updateFlag(element){
 
@@ -43,9 +49,11 @@ function updateFlag(element){
     let img = element.parentElement.querySelector("img");
 
     img.src =
-    `https://flagsapi.com/${countryCode}/flat/64.png`;
+    `https://flagsapi.com/${countryCode}/shiny/64.png`;
 
 }
+
+// FETCH EXCHANGE RATE
 
 async function updateExchangeRate(){
 
@@ -64,19 +72,31 @@ async function updateExchangeRate(){
     const URL =
     `${BASE_URL}/${fromCurr.value.toLowerCase()}.json`;
 
-    let response = await fetch(URL);
+    try{
 
-    let data = await response.json();
+        let response = await fetch(URL);
 
-    let rate =
-    data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
+        let data = await response.json();
 
-    let finalAmount = amtVal * rate;
+        let rate =
+        data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
 
-    msg.innerText =
-    `${amtVal} ${fromCurr.value} = ${finalAmount.toFixed(2)} ${toCurr.value}`;
+        let finalAmount = amtVal * rate;
+
+        msg.innerText =
+        `${amtVal} ${fromCurr.value} = ${finalAmount.toFixed(2)} ${toCurr.value}`;
+
+    }
+
+    catch(error){
+
+        msg.innerText = "Something went wrong!";
+
+    }
 
 }
+
+// BUTTON CLICK
 
 btn.addEventListener("click", (evt)=>{
 
@@ -85,6 +105,8 @@ btn.addEventListener("click", (evt)=>{
     updateExchangeRate();
 
 });
+
+// PAGE LOAD
 
 window.addEventListener("load", ()=>{
 
